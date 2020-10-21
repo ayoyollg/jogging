@@ -17,6 +17,7 @@ public class DetailSetting_aboutyouActivity extends AppCompatActivity {
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +30,24 @@ public class DetailSetting_aboutyouActivity extends AppCompatActivity {
         sp = getSharedPreferences("jogging",MODE_PRIVATE);
         editor = sp.edit();
 
+        String gender = sp.getString("gender","編輯");
+        Log.v("brad",gender);
+        showGender.setText(sp.getString("gender","編輯"));
 
+        int tall = sp.getInt("tall",130);
+        Log.v("brad","" +  tall);
+        showTall.setText(String.valueOf(sp.getInt("tall",0)));
+
+        int weight = sp.getInt("weight",25);
+        Log.v("brad","" + weight);
+        showWeight.setText(String.valueOf(sp.getInt("weight",0)));
     }
+
 
     public void lastpage(View view) {
         finish();
     }
+
 
     public void editGender(View view) {
         GenderPickerDialog dialog=new GenderPickerDialog(DetailSetting_aboutyouActivity.this);
@@ -44,8 +57,7 @@ public class DetailSetting_aboutyouActivity extends AppCompatActivity {
                 Toast.makeText(DetailSetting_aboutyouActivity.this, "Selected "+value, Toast.LENGTH_SHORT).show();
                 showGender.setText(value);
                 //此處的value應該存於偏好設定中
-                String gender = sp.getString("gender","編輯");
-                Log.v("brad",gender);
+
                 editor.putString("gender",value);
                 editor.commit();
             }
@@ -54,6 +66,8 @@ public class DetailSetting_aboutyouActivity extends AppCompatActivity {
 
     }
 
+
+
     public void edittall(View view) {
         NumberPickerDialog dialog=new NumberPickerDialog(DetailSetting_aboutyouActivity.this, 130, 230, new NumberPickerDialog.NumberPickerCallBack() {
             @Override
@@ -61,8 +75,7 @@ public class DetailSetting_aboutyouActivity extends AppCompatActivity {
                 Toast.makeText(DetailSetting_aboutyouActivity.this, "Selected "+String.valueOf(value), Toast.LENGTH_SHORT).show();
                 showTall.setText(String.valueOf(value));
                 //此處的value應該存於偏好設定中
-                int tall = sp.getInt("tall",130);
-                Log.v("brad","" +  tall);
+
                 editor.putInt("tall",value);
                 editor.commit();
             }
@@ -77,8 +90,7 @@ public class DetailSetting_aboutyouActivity extends AppCompatActivity {
                 Toast.makeText(DetailSetting_aboutyouActivity.this, "Selected "+String.valueOf(value), Toast.LENGTH_SHORT).show();
                 showWeight.setText(String.valueOf(value));
                 //此處的value應該存於偏好設定中
-                int weight = sp.getInt("weight",25);
-                Log.v("brad","" + weight);
+
                 editor.putInt("weight",value);
                 editor.commit();
             }

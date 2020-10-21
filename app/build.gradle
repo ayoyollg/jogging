@@ -21,7 +21,6 @@ android {
         }
     }
 }
-//def preference_version = '1.1.0'
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -34,7 +33,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.github.markushi:circlebutton:1.1'
     implementation 'com.github.ch-muhammad-adil:MaterialPickerDialog:1.0.3'
-
-    // jetpack-preference
-//    implementation "androidx.preference:preference:$preference_version"
 }
